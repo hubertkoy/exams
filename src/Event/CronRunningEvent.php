@@ -13,7 +13,7 @@ use Symfony\Component\Messenger\Event\WorkerRunningEvent;
  */
 class CronRunningEvent implements EventSubscriberInterface
 {
-    public function onWorkerRunning(WorkerRunningEvent $event)
+    public function onWorkerRunning(WorkerRunningEvent $event): void
     {
         if ($event->isWorkerIdle()) {
             $event->getWorker()->stop();
@@ -23,7 +23,7 @@ class CronRunningEvent implements EventSubscriberInterface
     /**
      * @return array<string>
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             WorkerRunningEvent::class => 'onWorkerRunning'
