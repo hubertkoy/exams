@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pytania egzaminacyjne{% endblock %}
+
+{% block body %}
+    <h1 class="mb-3">Pytania egzaminacyjne</h1>
+    <div class="row mb-3 g-3">
+        <div class="col-auto"><a class="btn btn-outline-primary" href="{{ path('app_questions_new') }}">Dodaj nowe</a></div>
+    <div class="col-auto">
+        <label for="searchQuestion" class="form-label visually-hidden">Szukaj pytania</label>
+        <input class="form-control" list="datalistSearchQuestion" id="searchQuestion" placeholder="Wpisz pytanie...">
+        <datalist id="datalistSearchQuestion">
+            {% for question in questions %}
+                <option value="{{ question.question }}">{{ question.question }}</option>
+            {% endfor %}
+        </datalist>
+    </div>
+        <div class="col-auto">
+            <button value="Wyczyść" class="btn btn-outline-secondary d-none" id="clearSearchQuestion"><i class="fa fa-x"></i> Wyczyść</button>
+        </div>
+    </div>
+    <div class="mb-3"></div>
+
+    <ol class="list-group list-group-numbered list-group-flush" id="questions">
+        {% for question in questions %}
+            <li class="list-group-item{{ question.solution ? '' : ' bg-danger text-bg-danger' }}" data-question="{{ question.question }}">
+            <span class="fw-bold question">
+                {{ question.question }}
+            </span>
+                {% if is_granted('ROLE_ADMIN') %}<a class="small text-decoration-none" href="{{ path('app_questions_edit', {id: question.id}) }}">Edytuj</a>{% endif %}
+                <div class="col-lg-12 mt-3 solution d-none rounded" style="text-align: justify;">
+                    {{ question.solution|raw }}
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+    <table class="table" style="display: none;">
+        <thead>
+        <tr>
+            <th>Pytanie</th>
+            <th>Odpowiedź</th>
+            <th>Zarządzaj</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.question }}</td>
+                <td class="more">{{ question.solution|raw }}</td>
+                <td>
+                    <a href="{{ path('app_questions_show', {'id': question.id}) }}">show</a>
+                    <a href="{{ path('app_questions_edit', {'id': question.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

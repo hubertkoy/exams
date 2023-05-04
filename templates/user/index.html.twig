@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<h1>Witaj {{ app.user.firstName ~ ' ' ~ app.user.lastName }}</h1>
+    {% if app.user.verified == false %}
+        Twój adres email nie został jeszcze zweryfikowany. <a href="{{ path('app_resend_verify_email') }}">Wyślij ponownie link weryfikacyjny</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit QuestionCategory{% endblock %}
+
+{% block body %}
+    <h1>Edit QuestionCategory</h1>
+
+    {{ include('question_categories/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_question_categories_index') }}">back to list</a>
+
+    {{ include('question_categories/_delete_form.html.twig') }}
+{% endblock %}

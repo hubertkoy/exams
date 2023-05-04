@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark text-bg-dark mb-3">
+    <div class="container">
+        <a class="navbar-brand" href="#">Pytania egzaminacyjne</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Przełącz nawigację">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {{ app.request.pathInfo == path('app_home') ? ' active' : '' }}" href="{{ path('app_home') }}">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ '/questions' in app.request.pathInfo ? ' active' : '' }}" href="{{ path('app_questions_index') }}">Pytania</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Kategorie pytań</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% if app.user %}
+                            <li><a class="dropdown-item{{ app.request.pathInfo == path('app_user_profile') ? ' active' : '' }}" href="{{ path('app_user_profile') }}">Profil</a></li>
+                            <li><a class="dropdown-item{{ app.request.pathInfo == path('app_user_change_password') ? ' active' : '' }}" href="{{ path('app_user_change_password') }}">Zmień hasło</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Wyloguj się</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{{ path('app_login') }}">Zaloguj się</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_register') }}">Utwórz nowe konto</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

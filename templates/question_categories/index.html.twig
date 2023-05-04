@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}QuestionCategory index{% endblock %}
+
+{% block body %}
+    <h1>QuestionCategory index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question_category in question_categories %}
+            <tr>
+                <td>{{ question_category.name }}</td>
+                <td>
+                    <a href="{{ path('app_question_categories_show', {'id': question_category.id}) }}">show</a>
+                    <a href="{{ path('app_question_categories_edit', {'id': question_category.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_question_categories_new') }}">Utwórz nowe</a>
+{% endblock %}

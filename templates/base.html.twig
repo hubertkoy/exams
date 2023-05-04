@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Witaj!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+{% include '_layout/nav.html.twig' %}
+<div class="container">
+    {% for alert, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ alert }} alert-dismissible fade show mb-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% block body %}{% endblock %}
+</div>
+</body>
+</html>

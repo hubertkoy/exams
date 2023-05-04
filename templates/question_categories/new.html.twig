@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New QuestionCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new QuestionCategory</h1>
+
+    {{ include('question_categories/_form.html.twig') }}
+
+    <a href="{{ path('app_question_categories_index') }}">back to list</a>
+{% endblock %}

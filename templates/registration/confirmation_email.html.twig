@@ -1,0 +1,11 @@
+<h1>Witaj</h1>
+
+<p>
+    Proszę potwierdzić swój adres e-mail, klikając w poniższy link: <br><br>
+    <a href="{{ signedUrl|raw }}">Potwierdź adres email</a>.
+    Ten link wygaśnie za {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>
+    Cheers!
+</p>
