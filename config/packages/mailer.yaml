@@ -1,5 +1,11 @@
 framework:
     mailer:
         dsn: '%env(MAILER_DSN)%'
+        #transport: '%env(MAILER_TRANSPORT)%'
+        #username: '%env(MAILER_USERNAME)%'
+        #password: '%env(MAILER_PASSWORD)%'
+        #host: '%env(MAILER_HOST)%'
+        #port: '%env(MAILER_PORT)%'
+        #encryption: '%env(MAILER_ENCRYPTION)%'
         headers:
             From: 'Hubert Koy <admin@hubertkoy.pl>'
